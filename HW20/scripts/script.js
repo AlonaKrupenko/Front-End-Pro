@@ -72,21 +72,18 @@ for (let i = arr.length; i > 0; i--) {
 //#10
 const arr1 = [[1, 2, 3], [4, 5], [6]];
 
-function findSum(arr) {
+function recFindSum(arr) {
   let sum = 0;
 
-  for (let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i]) === false) {
-      sum += arr[i];
+  for (let elem of arr) {
+    if (Array.isArray(elem) === true) {
+      sum += recFindSum(elem);
     } else {
-      for (let j = 0; j < arr[i].length; j++) {
-        sum += arr[i][j];
-      }
+      sum += elem;
     }
   }
   return sum;
 }
-findSum(arr1);
 
 //#11
 const arr1 = [
@@ -123,24 +120,3 @@ function findSum(arr) {
   return sum;
 }
 findSum(arr1);
-
-
-
-
-
-
-
-//---------
-function recFindSum(arr) {
-  let sum = 0;
-
-  for (let elem of arr) {
-    if (Array.isArray(elem) === true) {
-      sum += recFindSum(elem);
-    } else {
-      sum += elem;
-    }
-  }
-  return sum;
-}
-console.log(recFindSum(arr1));
