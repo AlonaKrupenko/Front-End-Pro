@@ -1,6 +1,8 @@
 function makeFlat(arr) {
-  if (Function.length > 1) {
-    return "Function accepts only 1 argument, too much arguments provided";
+  if (arguments.length > 1) {
+    throw new Error(
+      "Function accepts only 1 argument, too much arguments provided"
+    );
   }
   const updatedArr = [];
 
@@ -16,3 +18,7 @@ function makeFlat(arr) {
   }
   return flat(arr);
 }
+
+const array = [1, 3, [8, 5, 1, [5, 2, 3, 4], 1, 0]];
+
+console.log(makeFlat(array, 5));
