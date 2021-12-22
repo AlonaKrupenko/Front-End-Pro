@@ -22,5 +22,21 @@ function counter(accum = 0) {
       statistics.getStatistics++;
       return statistics;
     },
+    clearAccum() {
+      return (accum = 0);
+    },
+    clearStatistics() {
+      for (let key in statistics) {
+        statistics[key] = 0;
+      }
+      return statistics;
+    },
+    clearAll() {
+      this.clearAccum(), this.clearStatistics();
+      return {
+        accum,
+        statistics,
+      };
+    },
   };
 }
