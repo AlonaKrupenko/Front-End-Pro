@@ -10,15 +10,15 @@ function Student(firstName, lastName, birthYear) {
   this.marksArr.length = 10;
   this.attendanceArr.length = 10;
 
-  this.getAge = function () {
+  Student.prototype.getAge = function () {
     return new Date().getFullYear() - this.birthYear;
   };
 
-  this.averageScore = function () {
+  Student.prototype.averageScore = function () {
     return this.marksArr.reduce((a, b) => a + b) / this.marksArr.length;
   };
 
-  this.present = function () {
+  Student.prototype.present = function () {
     if (this.attendanceArr.length > 10) {
       throw new Error("Max length of array with attandance is 10");
     }
@@ -30,7 +30,7 @@ function Student(firstName, lastName, birthYear) {
     }
   };
 
-  this.absent = function () {
+  Student.prototype.absent = function () {
     if (this.attendanceArr.length > 10) {
       throw new Error("Max length of array with attandance is 10");
     }
@@ -42,7 +42,7 @@ function Student(firstName, lastName, birthYear) {
     }
   };
 
-  this.mark = function (mark) {
+  Student.prototype.mark = function (mark) {
     if (this.marksArr.length > 10) {
       throw new Error("Max length of array with makrs is 10");
     }
@@ -54,8 +54,8 @@ function Student(firstName, lastName, birthYear) {
     }
   };
 
-  this.summary = function () {
-    this.attendedAverage =
+  Student.prototype.summary = function () {
+    const attendedAverage =
       this.attendanceArr.reduce(function (acc, el) {
         if (el === true) {
           ++acc;
@@ -63,11 +63,11 @@ function Student(firstName, lastName, birthYear) {
         return acc;
       }, 0) / this.attendanceArr.length;
 
-    this.averageScoreCounted = this.averageScore();
+    const averageScoreCounted = this.averageScore();
 
-    if (this.attendedAverage >= 0.9 && this.averageScoreCounted >= 9) {
+    if (attendedAverage >= 0.9 && averageScoreCounted >= 9) {
       return "Ути какой молодчинка!";
-    } else if (this.attendedAverage >= 0.9 || this.averageScoreCounted >= 9) {
+    } else if (attendedAverage >= 0.9 || averageScoreCounted >= 9) {
       return "Норм, но можно лучше";
     } else {
       return "Редиска!";
